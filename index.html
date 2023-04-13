@@ -13,22 +13,93 @@
     <div id="wapper">
         <div class="container">
             <h1 class="timer">
-                <span class="minutes">00</span>:
-                <span class="seconds">00</span>.
-                <span class="milliseconds">000</span>
+                <span id="minutes">00</span>:
+                <span id="seconds">00</span>.
+                <span id="milliseconds">00</span>
             </h1>
             <ol class="lapContainer"></ol>
             <div class="bottomPart">
                 <div class="btns">
-                    <button class="reset">Reset</button>
-                    <button class="start">Start</button>
-                    <button class="stop">Stop</button>
+                    <button id="reset">Reset</button>
+                    <button id="start">Start</button>
+                    <button id="stop">Stop</button>
                 </div>
             </div>
         </div>
     </div>
 </body>
 <script>
+//window.onload = function () {
+  var minutes =00;
+  var seconds = 00; 
+  var milis = 00; 
+  var appendMinutes = document.getElementById("minutes")
+  var appendSeconds = document.getElementById("seconds")
+  var appendMilis = document.getElementById("milliseconds")
+  var buttonStart = document.getElementById("start");
+  var buttonStop = document.getElementById("stop");
+  var buttonReset = document.getElementById("reset");
+  var Interval ;
+
+    buttonStart.onclick = function() {
+    
+    clearInterval(Interval);
+     Interval = setInterval(startTimer, 10);
+  }
+  
+    buttonStop.onclick = function() {
+       clearInterval(Interval);
+  }
+  
+
+  buttonReset.onclick = function() {
+     clearInterval(Interval);
+    milis = "00";
+  	seconds = "00";
+    minutes = "00"
+    appendMilis.innerHTML = milis;
+  	appendSeconds.innerHTML = seconds;
+    appendMinutes.innerHTML = minutes;
+  }
+  
+   
+  
+  function startTimer () {
+    milis++; 
+    
+    if(milis <= 9){
+      appendMilis.innerHTML = "0" + milis;
+    }
+    
+    if (milis > 9){
+      appendMilis.innerHTML = milis;
+      
+    } 
+    
+    if (milis > 99) {
+      console.log("seconds");
+      seconds++;
+      appendSeconds.innerHTML = "0" + seconds;
+      milis = 0;
+      appendMilis.innerHTML = "0" + 0;
+    }
+    
+    if (seconds > 9){
+      appendSeconds.innerHTML = seconds;
+    }
+
+    if (seconds>59) {
+        console.log("minutes");
+        minutes++;
+        appendMinutes.innerHTML = "0"+minutes;
+        seconds=0;
+        appendSeconds.innerHTML = "0"+0;
+    }
+  
+  }
+  
+
+//}
 </script>
 
 </html>
